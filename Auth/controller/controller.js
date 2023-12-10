@@ -151,7 +151,7 @@ class AuthController {
       }
 
       const indexToRemove = user[arrayName].findIndex(
-        (item) => item._id.toString() === itemId
+        (item) => item._id === itemId
       );
 
       if (indexToRemove === -1) {
