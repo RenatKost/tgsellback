@@ -9,6 +9,6 @@ router.get('/get', controller.getUsers)
 router.get('/getuser', controller.getUser)
 router.post('/add', controller.addItem)
 router.post('/change', controller.moveItemBetweenArrays)
-router.post('/deleteFavorites', controller.deleteFavorites)
+router.post('/deleteItemWithArray', controller.deleteItemWithArray)
 
 module.exports = router;

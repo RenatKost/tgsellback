@@ -140,23 +140,25 @@ class AuthController {
         .json({ success: false, msg: "Internal server error", error: `${e}` });
     }
   }
-  async deleteFavorites(req, res) {
+  async deleteItemWithArray(req, res) {
     try {
-      const { userId, itemId } = req.body;
+      const { userId, itemId, arrayName } = req.body;
 
       const user = await User.findById(userId);
 
       if (!user) {
         return res.status(404).json({ msg: "User not found" });
       }
-      const indexToRemove = user.itemFavorites.findIndex(
-        (favorite) => favorite._id.toString() === itemId
+
+      const indexToRemove = user[arrayName].findIndex(
+        (item) => item._id.toString() === itemId
       );
 
       if (indexToRemove === -1) {
         return res.status(404).json({ msg: "Item not found in favorites" });
       }
-      user.itemFavorites.splice(indexToRemove, 1);
+
+      user[arrayName].splice(indexToRemove, 1);
 
       await user.save();
 
